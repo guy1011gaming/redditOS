@@ -1550,3 +1550,5 @@ redditos/Scripts/python.exe
 redditos/Scripts/pythonw.exe
 __pycache__/automate.cpython-39.pyc
 __pycache__/reddit_user.cpython-39.pyc
+__pycache__/automate.cpython-310.pyc
+__pycache__/reddit_user.cpython-310.pyc

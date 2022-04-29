@@ -28,6 +28,7 @@ class User:
             exit(0)
         else:
             print('User successfully logged in.')
+            self.authenticated = True
             self.token = code.json()['access_token']
 
         self.header = {'Authorization': 'bearer ' + self.token, 'User-Agent': self.userAgent}
@@ -75,3 +76,18 @@ class User:
         else:
             print('Error whilst sending message.')
             print(resp.json())
+
+    def showPosts(self, sort: str, timespan: str, limit: int):
+        data = {'sort': sort, 't': timespan, 'limit': limit, 'count': limit}
+        resp = requests.get('https://oauth.reddit.com/user/' + self.username + '/submitted', headers=self.header, data=data)
+
+        print(resp)
+        for x in resp.json()['data']['children']:
+            print('User '+ self.username + ' posted in: ' + x['data']['subreddit'] + ', ' + x['data']['selftext'])
+        
+
+    def getAuthenticated(self):
+        return self.authenticated
+
+    def getHeader(self):
+        return self.header

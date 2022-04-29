@@ -39,9 +39,9 @@ class SimpleWindow(QWidget):
         self.layout.addWidget(self.status, 3, 0, 1, 3)
 
     def onLogin(self):
-        username = self.lineEdits['Username'].text
-        password = self.lineEdits['Password'].text
-        self.user = reddit_user.User(username=username, password=password)
+        username = str(self.lineEdits['Username'].text())
+        password = str(self.lineEdits['Password'].text())
+        self.user = reddit_user.User(username, password)
 
 def main():
     app = QApplication(sys.argv)
