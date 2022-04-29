@@ -37,3 +37,9 @@ class Bot():
                 print('Post to ' + x + ' successful.')
             else:
                 print('Post to ' + x + ' unsuccessful.')
+
+    def getRedditUsers(self, subreddits: str, term: str, count: int):
+        #for subreddit in subreddits:
+        data = {'g': 'GLOBAL', 'count': count, 'show': 'all'}
+        resp = requests.get('https://oauth.reddit.com/r/' + subreddits + '/new', headers=self.user.getHeader, data=data)
+        print(resp.json())
