@@ -1548,3 +1548,5 @@ redditos/Scripts/pip3.10.exe
 redditos/Scripts/pip3.exe
 redditos/Scripts/python.exe
 redditos/Scripts/pythonw.exe
+__pycache__/automate.cpython-39.pyc
+__pycache__/reddit_user.cpython-39.pyc
