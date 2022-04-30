@@ -7,9 +7,11 @@ bot = Bot(user)
 #user.sendMessage('Test', 'Hello fellow user', 'Ill-Union9100')
 
 #user.makePost('memes', 'Karma for Karma!', 'Hi, please upvote this post! Have a great day!')
-#resp = bot.findSubreddits('Donald Trump', 2)
+#resp = bot.findSubreddits('GoneWil', 2)
 #bot.autoPostToMultipleSubreddits(resp, 'Please give me some Karma for a test!', 'Would really appreciate some Karma thanks!!!')
 
 #user.showPosts('hot', 'all', 100)
 
-bot.getRedditUsers('memes', 'Cock', 1)
+#bot.getRedditUsers(['gonewild', 'gonewildcolor', 'gonewildcouples', 'gonewildasian'], ['Girl', 'single', 'fun'], 1)
+
+bot.getRedditUsers(['nudes', 'gonewild', 'ahegao'], ['onlyfans', 'pics', 'vids', 'OF', 'fans.ly'], 1)

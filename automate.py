@@ -1,3 +1,4 @@
+import json
 from reddit_user import User
 import requests
 
@@ -38,8 +39,22 @@ class Bot():
             else:
                 print('Post to ' + x + ' unsuccessful.')
 
-    def getRedditUsers(self, subreddits: str, term: str, count: int):
+    def getRedditUsers(self, subreddits: list, terms: list, count: int):
         #for subreddit in subreddits:
         data = {'g': 'GLOBAL', 'count': count, 'show': 'all'}
-        resp = requests.get('https://oauth.reddit.com/r/' + subreddits + '/new', headers=self.user.getHeader, data=data)
-        print(resp.json())
+        for subreddit in subreddits:
+            resp = requests.get('https://oauth.reddit.com/r/' + subreddit + '/new', headers=self.user.getHeader(), data=data)
+            
+            for k in resp.json()['data']['children']:
+                if not k['data']['author'] == '[deleted]':
+                    userdata = requests.get('https://oauth.reddit.com/user/' + k['data']['author'] + '/about', headers=self.user.getHeader())
+                    #print(userdata.json()['data']['subreddit']['public_description'])
+                    if userdata.status_code == 200: #& userdata.json()['data']['is_suspended'] == False:
+                        marked = False
+                        for term in terms:
+                            if not marked:
+                                if term.lower() in userdata.json()['data']['subreddit']['public_description'].lower():
+                                    print('u/' + k['data']['author'] + ' says: ' + userdata.json()['data']['subreddit']['public_description'])
+                                    marked = True
+                    else:
+                        print('Something went wrong...')
