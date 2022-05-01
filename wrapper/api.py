@@ -12,6 +12,6 @@ bot = Bot(user)
 
 #user.showPosts('hot', 'all', 100)
 
-#bot.getRedditUsers(['gonewild', 'gonewildcolor', 'gonewildcouples', 'gonewildasian'], ['Girl', 'single', 'fun'], 1)
+bot.getRedditUsers(['gonewild', 'gonewildcolor', 'gonewildcouples', 'gonewildasian'], ['OF', 'only fans', 'onlyfans'], 100)
 
-bot.getRedditUsers(['nudes', 'gonewild', 'ahegao'], ['onlyfans', 'pics', 'vids', 'OF', 'fans.ly'], 1)
+#bot.getCountOfResults('gonewild')
