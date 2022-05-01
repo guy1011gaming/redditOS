@@ -1,6 +1,6 @@
 import sys
 from PyQt6.QtWidgets import *
-import reddit_user
+import wrapper.reddit_user as reddit_user
 
 
 class SimpleWindow(QWidget):
