@@ -77,13 +77,39 @@ class User:
             print('Error whilst sending message.')
             print(resp.json())
 
-    def showPosts(self, sort: str, timespan: str, limit: int):
-        data = {'sort': sort, 't': timespan, 'limit': limit, 'count': limit}
-        resp = requests.get('https://oauth.reddit.com/user/' + self.username + '/submitted', headers=self.header, data=data)
+    #set a hard limit of 50 posts per call? Which error is returned when last post was reached (handling needed!)?
+    def getPosts(self, sort: str, timespan: str, from_post_id = ''):
+        limit = 50
+        posts = {}
+        return_values = {}
+        data = {'sort': sort, 't': timespan}
+        param = {'limit': limit}
 
-        print(resp)
-        for x in resp.json()['data']['children']:
-            print('User '+ self.username + ' posted in: ' + x['data']['subreddit'] + ', ' + x['data']['selftext'])
+        if not from_post_id == '':
+            param['after'] = from_post_id
+        
+        try:
+            resp = requests.get('https://oauth.reddit.com/user/' + self.username + '/submitted', headers=self.header, data=data, params=param)
+
+            if resp.status_code == 200:
+                if len(resp.json()['data']['children']) > 0:
+                    for post in resp.json()['data']['children']:
+                        posts[post['data']['id']] = post
+                        return_values['last_id'] = 't3_' + post['data']['id']
+                    
+                    return_values['posts'] = posts
+                    return return_values
+                    #print('User '+ self.username + ' posted in: ' + post['data']['subreddit'] + ', ' + post['data']['selftext'])
+                else:
+                    #End of list reached
+                    return None
+            else:
+                pass
+                #print('There was an error fetching posts.')
+            
+        except:
+            print('Something went wrong whilst fetching posts...')
+            return None
         
 
     def getAuthenticated(self):
@@ -91,3 +117,6 @@ class User:
 
     def getHeader(self):
         return self.header
+
+    def getUsername(self):
+        return self.username
