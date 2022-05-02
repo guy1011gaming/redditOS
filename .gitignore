@@ -13,3 +13,6 @@ NeptuneWeb/NeptuneWeb/__pycache__/__init__.cpython-37.pyc
 NeptuneWeb/NeptuneWeb/__pycache__/settings.cpython-37.pyc
 NeptuneWeb/NeptuneWeb/__pycache__/urls.cpython-37.pyc
 NeptuneWeb/NeptuneWeb/__pycache__/wsgi.cpython-37.pyc
+__pycache__/database.cpython-39.pyc
+__pycache__/reddit_user.cpython-39.pyc
+__pycache__/reddit_user.cpython-39.pyc
