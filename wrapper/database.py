@@ -58,7 +58,7 @@ class DB():
         c.execute(""" 
             CREATE TABLE IF NOT EXISTS fetish (
             id INTEGER PRIMARY KEY AutoIncrement,
-            name TEXT
+            name TEXT)
         """)
 
         db.commit()
@@ -173,3 +173,12 @@ class DB():
         db.commit()
 
         print("Table " + table_name + " dropped.")
+
+    def show_database(db):
+
+        c = db.cursor()
+
+        c.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        
+        print("List of tables\n")
+        print(c.fetchall())
