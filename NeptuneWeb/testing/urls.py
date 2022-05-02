@@ -5,7 +5,7 @@ from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    path('', views.layout_test)
+    path('dashboard/', views.dashboard)
 ]
 
 urlpatterns += staticfiles_urlpatterns()
