@@ -9,6 +9,11 @@
     --main-font-color: #31393D;
     --main-border-color: #161f22;
     --main-hover-color: #999;
+    --main-palette-color-1: #CE96A6;
+    --main-palette-color-2: #3b3355;
+    --main-palette-color-3: #5D5D81;
+    --main-palette-color-4: #A3CEF1;
+    --main-palette-color-5: #F9F9ED;
 }
 
 ::selection {
@@ -63,7 +68,7 @@ header {
 .flex-containerBody {
     display: flex;
     justify-content: flex-start;
-    background-color: var(--main-border-color);
+    background-color: var(--main-bg-color);
 }
 .flex-containerBody > nav {
     background-color: var(--main-accent-color);
@@ -74,9 +79,6 @@ header {
     margin: 5% 0 0 0;
     padding: 0 0 0 3.5%;
     float: left;
-    border: var(--main-border-color);
-    border-radius: 4px;
-    border-style: solid;
 }
 .flex-containerBody > section {
     background-color: var(--main-accent-color);
@@ -87,9 +89,6 @@ header {
     margin: 5% 0 0 0;
     padding: 0 0 0 1.5%;
     float: left;
-    border: var(--main-border-color);
-    border-radius: 4px;
-    border-style: solid;
 }
 
 ul {

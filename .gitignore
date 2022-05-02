@@ -1566,3 +1566,9 @@ NeptuneWeb/NeptuneWeb/__pycache__/wsgi.cpython-37.pyc
 .vscode/settings.json
 __pycache__/automate.cpython-37.pyc
 __pycache__/reddit_user.cpython-37.pyc
+NeptuneWeb/testing/__pycache__/__init__.cpython-37.pyc
+NeptuneWeb/testing/__pycache__/admin.cpython-37.pyc
+NeptuneWeb/testing/__pycache__/apps.cpython-37.pyc
+NeptuneWeb/testing/__pycache__/models.cpython-37.pyc
+NeptuneWeb/testing/__pycache__/urls.cpython-37.pyc
+NeptuneWeb/testing/__pycache__/views.cpython-37.pyc
