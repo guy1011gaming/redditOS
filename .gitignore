@@ -17,3 +17,4 @@ __pycache__/database.cpython-39.pyc
 __pycache__/reddit_user.cpython-39.pyc
 __pycache__/reddit_user.cpython-39.pyc
 .vscode/launch.json
+wrapper/__pycache__/database.cpython-37.pyc
