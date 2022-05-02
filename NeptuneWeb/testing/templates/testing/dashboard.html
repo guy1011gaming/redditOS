@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,1,200" />
     <title>neptune</title>
 </head>
 <body>
@@ -24,15 +25,25 @@
     <div class="flex-containerBody">
 
         <nav>
-            <ul>
-                <li><a href="#feed">feed</a></li>
-                <li><a href="#suggestions">suggestions</a></li>
-                <li><a href="#analytics">analytics</a></li>
-            </ul>
+
+            <div class="flex-containerNav">
+
+                <ul>
+                    <li><span class="material-symbols-outlined" style="color: white; opacity: 0.8;">radio_button_unchecked</span><a href="#feed">feed</a></li>
+                    <li><span class="material-symbols-outlined" style="color: white; opacity: 0.3;">radio_button_unchecked</span><a href="#suggestions">suggestions</a></li>
+                    <li><span class="material-symbols-outlined" style="color: white; opacity: 0.3;">radio_button_unchecked</span><a href="#analytics">analytics</a></li>
+                </ul>
+
+            </div>
+
         </nav>
     
         <section class="content">
-            <p>Test</p>
+            <div class="flex-containerPost">
+                <div class=""post>
+                    <p>Test</p>
+                </div>
+            </div>
         </section>
 
     </div>

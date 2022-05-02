@@ -4,9 +4,9 @@
 }
 
 :root {
-    --main-bg-color: #FFFFFF;
+    --main-bg-color: #3b3355;
     --main-accent-color: #FFFFFF;
-    --main-font-color: #31393D;
+    --main-font-color: #FFFFFF;
     --main-border-color: #161f22;
     --main-hover-color: #999;
     --main-palette-color-1: #CE96A6;
@@ -22,7 +22,8 @@
 }
 
 html {
-    background-color: var(--main-bg-color);
+    height: 100%;
+    background-color: var(--main-palette-color-2);
 }
 
 body {
@@ -32,7 +33,7 @@ body {
 
 header {
     font-family: Roboto, sans-serif;
-    background-color: var(--main-accent-color);
+    background-color: var(--main-palette-color-2);
     color: var(--main-font-color);
     width: 100%;
     padding-left: 2.5%;
@@ -40,10 +41,10 @@ header {
 .flex-containerHeader {
     display: flex;
     justify-content: space-between;
-    background-color: var(--main-accent-color);
+    margin: 0;
 }
 .flex-containerHeader > h1 {
-    width: 25%;
+    width: 20%;
     margin: .5vh 0 1vh 0;
     float: left;
 }
@@ -58,53 +59,60 @@ header {
 }
 .flex-containerHeader > p a:hover {
     background-color: none;
-    color: var(--main-font-color);
-    border: var(--main-font-color);
-    border-radius: 1px;
-    border-style: none none solid none;
+    color: var(--main-hover-color);
 }
 
 
 .flex-containerBody {
     display: flex;
     justify-content: flex-start;
-    background-color: var(--main-bg-color);
 }
 .flex-containerBody > nav {
-    background-color: var(--main-accent-color);
     font-family: Roboto, sans-serif;
     font-size: 1.1em;
     color: var(--main-font-color);
     width: 15%;
-    margin: 5% 0 0 0;
-    padding: 0 0 0 3.5%;
+    margin: 0 0 0 0;
+    padding: 0 0 0 1.5%;
     float: left;
 }
 .flex-containerBody > section {
-    background-color: var(--main-accent-color);
     font-family: Roboto, sans-serif;
     font-size: 1.1em;
-    color: var(--main-font-color);
-    width: 50%;
+    background-color: var(--main-font-color);
+    color: var(--main-hover-color);
+    width: 70%;
     margin: 5% 0 0 0;
     padding: 0 0 0 1.5%;
     float: left;
 }
 
-ul {
+.flex-containerPost {
+    background-color: var(--main-bg-color);
+    justify-content: center;
+}
+.flex-containerPost > div.post {
+    width: 80%;
+}
+
+.flex-containerNav {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+.flex-containerNav > ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
-
-li {
-    padding: 2vh 0 1vh 0;
+.flex-containerNav > ul > li {
+    padding: 0.5vh 0 0.5vh 0;
 }
-li a {
+.flex-containerNav > ul > li a {
     text-decoration: none;
     color: var(--main-font-color);
 }
-li a:hover {
+.flex-containerNav > ul > li a:hover {
     background-color: none;
     color: var(--main-hover-color);
 }
