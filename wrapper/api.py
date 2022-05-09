@@ -1,6 +1,6 @@
 from reddit_user import User
 from automate import Bot
-from database import DB
+from database import database
 
 
 user = User('RedditOS_', 'RedditOSMaxHenning2022')
