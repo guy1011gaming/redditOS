@@ -1,7 +1,6 @@
 import sqlite3 as sql
 from sqlite3 import Error
 
-from colorama import Cursor
 
 #memory db to test stuff
 #conn = sql.connect(':memory:')
