@@ -6,6 +6,8 @@ from sqlite3 import Error
 #conn = sql.connect(':memory:')
 
 class DB():
+    def __init__(self):
+        self
       
     #create connection to db, returns db
     def sql_connection():
