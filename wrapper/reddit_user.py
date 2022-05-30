@@ -165,35 +165,45 @@ class User:
                 print('Post to ' + subreddit + ' unsuccessful.')
 
     #returns users in a list of subreddits which have any of the given terms in their public description, amount sets how many posts in a subreddit should be returned
-    def getRedditUsers(self, subreddits: list, terms: list, amount: int):
-        data = {'g': 'GLOBAL', 'show': 'all'}
-        param = {'limit': amount}
+    def getRedditUsers(self, subreddits: list):
+        results = {}
+        results['users'] = {}
 
+        data = {'g': 'GLOBAL', 'show': 'all'}
+        param = {'limit': 100}
+
+        i = 0
         for subreddit in subreddits:
-            resp = requests.get('https://oauth.reddit.com/r/' + subreddit + '/new', headers=self.header, data=data, params=param)
+            if 'r/' in subreddit:
+                subreddit = subreddit[2:]
+            print('Getting info from r/' + subreddit)
+            resp = requests.get('https://oauth.reddit.com/r/' + subreddit + '/top', headers=self.header, data=data, params=param)
+            
             if resp.status_code == 200:
-                print(len(resp.json()['data']['children']))
-                try:
-                    for k in resp.json()['data']['children']:
-                        if not k['data']['author'] == '[deleted]':
-                            userdata = requests.get('https://oauth.reddit.com/user/' + k['data']['author'] + '/about', headers=self.header)
-                            
-                            if userdata.status_code == 200:
-                                marked = False
-                                for term in terms:
-                                    if not marked:
-                                        if term.lower() in userdata.json()['data']['subreddit']['public_description'].lower():
-                                            description = (userdata.json()['data']['subreddit']['public_description']).replace('\n', ' ')
-                                            print('u/' + k['data']['author'] + ' says: ' + description)
-                                            marked = True
-                            else:
-                                print('Reddit Server had a problem.')
+                #print(len(resp.json()['data']['children']))
+                #try:
+                for k in resp.json()['data']['children']:
+                    if not k['data']['author'] == '[deleted]':
+                        userdata = requests.get('https://oauth.reddit.com/user/' + k['data']['author'] + '/about', headers=self.header)
+                        #print(userdata.json())
+                        if userdata.status_code == 200:
+                            try:
+                                results['users'][i] = userdata.json()['data']['name']
+                                i += 1
+                            except:
+                                print('Problem at user: ' + userdata.json())
+
                         else:
-                            print('User was deleted and could not be found.')
-                except:
-                    print('User threw an exception.')
+                            print('Reddit Server had a problem.')
+                    else:
+                        print('User was deleted and could not be found.')
+                #except:
+                 #   print('User threw an exception.')
             else:
-                print('Error with subreddit.')
+                print('Error with subreddit: ')
+                print(resp.json())
+        
+        return results
 
     #Returns posts of given user, sorting, amount and timespan can be defined by parameter. if user is empty it will get posts of own user
     def showPostsOfUser(self, sort: str, timespan: str, count: int, user = ''):

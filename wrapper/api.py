@@ -24,9 +24,9 @@ def test_auto_post(user: User):
 
 user = test_login_user()
 
-test_find_subreddits(user)
+#test_find_subreddits(user)
 
-#user.getPosts('hot', 'all', 100)
+user.getPosts('hot', 'all')
 #bot.showSavedOfUser('controversial', 'all', 10, 'xFregas')
 
 #bot.getRedditUsers(['gonewild', 'gonewildcolor', 'gonewildcouples', 'gonewildasian'], ['OF', 'only fans', 'onlyfans'], 100)
