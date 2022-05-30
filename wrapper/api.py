@@ -1,6 +1,8 @@
 from reddit_user import User
 from automate import Bot
-from database import database
+import sys
+sys.path.insert(0, "./database")
+from database import DB
 
 
 user = User('RedditOS_', 'RedditOSMaxHenning2022')
