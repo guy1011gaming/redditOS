@@ -77,6 +77,10 @@ class User:
             print('Error whilst sending message.')
             print(resp.json())
 
+    def sendMassMessage(self, recipients: list, subject: str, message: str):
+        for i in recipients:
+            self.sendMessage(subject, message, i)
+
     def showPosts(self, sort: str, timespan: str, limit: int):
         data = {'sort': sort, 't': timespan, 'limit': limit, 'count': limit}
         resp = requests.get('https://oauth.reddit.com/user/' + self.username + '/submitted', headers=self.header, data=data)

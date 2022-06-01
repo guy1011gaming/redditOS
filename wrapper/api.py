@@ -7,7 +7,8 @@ from database import DB
 
 user = User('RedditOS_', 'RedditOSMaxHenning2022')
 bot = Bot(user)
-#user.sendMessage('Test', 'Hello fellow user', 'Ill-Union9100')
+user.sendMessage('Test', 'Hello fellow **user**', 'xFregas')
+#user.sendMassMessage(['xFregas', 'Ill-Union9100'], 'Hallo geile Sau', 'luv u')
 
 #user.makePost('memes', 'Karma for Karma!', 'Hi, please upvote this post! Have a great day!')
 #resp = bot.findSubreddits('GoneWil', 2)

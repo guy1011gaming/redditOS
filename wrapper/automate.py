@@ -75,3 +75,13 @@ class Bot():
         data = {'g': 'GLOBAL', 'show': 'all'}
         resp = requests.get('https://oauth.reddit.com/r/' + subreddit + '/new', headers=header, data=data, params={'limit': 100})
         print(len(resp.json()['data']['children']))
+
+
+    #get Reddit-Users who have an OF Acc
+    def getUsersWithOF(self, src: json):
+        output = {}
+        list = json.loads(src)
+        for i in list['data']:
+            user = list['data'][i]
+            if user['hasOF'] != None:
+                output[user['name']] = user['OnlyFans_username']
