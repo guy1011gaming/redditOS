@@ -252,6 +252,7 @@ class User:
                 else:
                     returnValues['eol'] = True
                     returnValues['last_id'] = '0'
+                    #haha
                 return returnValues
 
             except:
