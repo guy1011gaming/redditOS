@@ -64,8 +64,9 @@ class User:
             print(resp.json()['errors'])
 
     def sendMessage(self, subject: str, message: str, recipient: str):
-        data = {'api_type': 'json', 'subject': subject, 'text': message, 'to': recipient}
-        resp = requests.post('https://oauth.reddit.com/api/compose', data=data, headers=self.header)
+        data = { 'subject': subject, 'text': message, 'to': recipient}
+        param = {'api_type': 'json'}
+        resp = requests.post('https://oauth.reddit.com/api/compose', data=data, params=param, headers=self.header)
 
         if resp.status_code == 200:
             if resp.json()['json']['errors'] is not None:
@@ -181,7 +182,6 @@ class User:
             
             if resp.status_code == 200:
                 #print(len(resp.json()['data']['children']))
-                #try:
                 for k in resp.json()['data']['children']:
                     if not k['data']['author'] == '[deleted]':
                         userdata = requests.get('https://oauth.reddit.com/user/' + k['data']['author'] + '/about', headers=self.header)
@@ -197,8 +197,6 @@ class User:
                             print('Reddit Server had a problem.')
                     else:
                         print('User was deleted and could not be found.')
-                #except:
-                 #   print('User threw an exception.')
             else:
                 print('Error with subreddit: ')
                 print(resp.json())
@@ -206,20 +204,80 @@ class User:
         return results
 
     #Returns posts of given user, sorting, amount and timespan can be defined by parameter. if user is empty it will get posts of own user
-    def showPostsOfUser(self, sort: str, timespan: str, count: int, user = ''):
+    def getPostsOfUser(self, sort: str, timespan: str, count: int, user = '', from_post_id = ''):
         data = {'sort': sort, 't': timespan}
         param = {'limit': count}
 
+        if not from_post_id == '':
+            if 't3_' in from_post_id:
+                param['after'] = from_post_id
+            else:
+                param['after'] = 't3_' + from_post_id
+
+        returnValues = {}
+        posts = {}
+
         if user == '':
             user = self.user.getUsername()
+        
+        try:
+            resp = requests.get('https://oauth.reddit.com/user/' + user + '/submitted', headers=self.header, data=data, params=param)
+        except:
+            print('Error contacting reddit servers...')
+            return
 
-        resp = requests.get('https://oauth.reddit.com/user/' + user + '/submitted', headers=self.header, data=data, params=param)
+        #print(resp.json())
+        if resp.status_code == 200:
+            try:
+                if len(resp.json()['data']['children']) > 0:
+                    returnValues['eol'] = False
+                    try:
+                        for postSrc in resp.json()['data']['children']:
+                            posts[postSrc['data']['name']] = {}
+                            returnValues['last_id'] = postSrc['data']['name']
 
-        print(resp)
-        print(sort + ' posts of u/' + user + ':')
-        for post in resp.json()['data']['children']:
-            print('r/' + post['data']['subreddit'] + ':\nTitle: ' + post['data']['title'] + '\nText: ' + post['data']['selftext'] + '\nLinks: ' + post['data']['url'] + '\n\n')
+                            post = {}
+                            post['subreddit'] = postSrc['data']['subreddit_name_prefixed']
+                            post['upvotes'] = postSrc['data']['ups']
+                            post['downvotes'] = postSrc['data']['downs']
+                            post['received_awards'] = postSrc['data']['total_awards_received']
+                            post['amount_comments'] = postSrc['data']['num_comments']
 
+                            posts[postSrc['data']['name']] = post
+                    except:
+                        print('Error whilst reading post...')
+                        print(postSrc)
+
+                    returnValues['data'] = posts
+                else:
+                    returnValues['eol'] = True
+                    returnValues['last_id'] = '0'
+                return returnValues
+
+            except:
+                print('Error with returned posts...')
+                return
+        else:
+            print('Status code 200 not received')
+            returnValues['eol'] = True
+            return returnValues
+
+    #Returns if user has any of given terms in description
+    def checkUserDescription(self, username: str, terms: list):
+        if 'u/' in username:
+            username = username[2:]
+
+        userdata = requests.get('https://oauth.reddit.com/user/' + username + '/about', headers=self.header)
+
+        hasTerm = False
+
+        for term in terms:
+            if term in userdata['data']['subreddit']['public_description']:
+                hasTerm = True
+                break
+        
+        return hasTerm
+            
     def getAuthenticated(self):
         return self.authenticated
 
