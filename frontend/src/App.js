@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import Sidebar from './components/Sidebar';
+import Tile from './components/Tile'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+    <Sidebar />
+    <Tile />
     </div>
   );
 }
 
 export default App;
+
+
+
+/* 
+  const loggedIn = true;
+  const name = "Simon";
+      {loggedIn ? (
+        <>
+        <h4>Hello {name}! How are you today?</h4>
+        </>
+      ) : (
+        <>
+        <h1>You are not logged in.</h1>
+        </>
+      )}
+*/
