@@ -17,7 +17,7 @@ const Sidebar = () => {
         <div className='profile'>
             <div className='SidebarHead'>
                 <div className='SidebarProfilePicture'>
-                    <img src={profilepicture} alt='profile picture' />
+                    <img src={profilepicture} alt='profile pic' />
                 </div>
                 <p>@{username}</p>
             </div>
@@ -28,7 +28,7 @@ const Sidebar = () => {
                     <li
                     key={key}
                     className='SidebarLI'
-                    id={window.location.pathname == val.link ? "active" : ""}
+                    id={window.location.pathname === val.link ? "active" : ""}
                     onClick={() => {
                         window.location.pathname = val.link
                     }}>

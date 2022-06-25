@@ -9,6 +9,7 @@
   --lightmode-body-bg-color: #e7e7e7;
   --darkmode-front-color: #FFFFFF;
   --darkmode-bg-color: #2d2d2d;
+  --accent-color-1: rgb(170, 97, 181);
 }
 
 .Tile {
@@ -23,50 +24,32 @@
   padding: 0;
   text-decoration: underline;
 }
-.Tile h2 {
-  margin: 0;
-  padding: 0;
-}
 
 .TileMid {
   height: 100%;
-  width: 60%;
+  width: 70%;
   overflow-y: scroll;
 }
-.TileMid1 {
-  height: 52.5%;
-  max-width: 100%;
-  padding: 2% 2% 2%;
-  margin: 2.5% 2.5% 0 0;
-  background-color: var(--lightmode-tile-bg-color);
-  font-family: var(--main-font);
-  border-radius: 10px;
-  box-shadow: 3px 3px 8px #c2c2c2;
-}
-.TileMid2 {
-  height: 32%;
-  max-width: 100%;
-  padding: 2% 2% 2%;
-  margin: 2.5% 2.5% 0 0;
-  background-color: var(--lightmode-tile-bg-color);
-  font-family: var(--main-font);
-  border-radius: 10px;
-  box-shadow: 3px 3px 8px #c2c2c2;
-}
-
-
 
 .TileRight {
-  height: 100%;
-  width: 40%;
-  margin: 2.5% 2.5% 2.5%;
-  display: flex;
-  flex-direction: column;
+  height: 90%;
+  width: 30%;
+  padding-top: 5%;
+  overflow-y: scroll;
 }
-.TileRight1 {
-  height: 30%;
-  max-width: 100%;
-  padding: 2% 2% 2%;
+.TileRight p.rightTileTitle {
+  width: auto;
+  padding-left: 0;
+  font-size: 1.25rem;
+  color: var(--lightmode-font-color);
+  margin: 0 0 5px 0;
+  font-weight: 400;
+}
+.TileRightBox {
+  height: auto;
+  width: 80%;
+  padding: 4.5% 2% 3% 4.5%;
+  margin: 5% 5% 0 0;
   background-color: var(--lightmode-tile-bg-color);
   font-family: var(--main-font);
   border-radius: 10px;
