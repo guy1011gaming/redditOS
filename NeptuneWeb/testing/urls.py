@@ -9,7 +9,8 @@ urlpatterns = [
     path('', views.testing),
     path('routes/', views.routes),
     path('users/', views.getUsers), 
-    path('users/<str:pk>', views.getUser)
+    path('users/<str:pk>', views.getUser),
+    path('register_user/', views.register_user)
 ]
 
 urlpatterns += staticfiles_urlpatterns()
